@@ -2,6 +2,15 @@ public class Radio {
 
     private int currentRadioStation;
     private int currentVolume;
+    private int maxStation;
+
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
+    }
+
+    public Radio() {
+        this.maxStation = 9;
+    }
 
     // Номер радиостанции
 
@@ -9,7 +18,7 @@ public class Radio {
         if (currentRadioStation < 0) {
             return;
         }
-        if (currentRadioStation > 9) {
+        if (currentRadioStation > maxStation) {
             return;
         }
         this.currentRadioStation = currentRadioStation;
@@ -20,7 +29,7 @@ public class Radio {
     }
 
     public void next() {
-        if (currentRadioStation == 9) {
+        if (currentRadioStation == maxStation) {
             currentRadioStation = 0;
         } else {
             currentRadioStation++;
@@ -29,7 +38,7 @@ public class Radio {
 
     public void prev() {
         if (currentRadioStation == 0) {
-            currentRadioStation = 9;
+            currentRadioStation = maxStation;
         } else {
             currentRadioStation = currentRadioStation - 1;
         }
