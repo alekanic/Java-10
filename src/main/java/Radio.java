@@ -1,33 +1,37 @@
 public class Radio {
 
-    public int currentRadioStation;
-    public int currentVolume;
+    private int currentRadioStation;
+    private int currentVolume;
 
     // Номер радиостанции
 
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation < 0) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (currentRadioStation > 9) {
             return;
         }
-        currentRadioStation = newCurrentRadioStation;
+        this.currentRadioStation = currentRadioStation;
     }
 
-    public void next(int newCurrentRadioStation) {
-        if (newCurrentRadioStation == 9) {
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
+    }
+
+    public void next() {
+        if (currentRadioStation == 9) {
             currentRadioStation = 0;
         } else {
-            currentRadioStation = newCurrentRadioStation + 1;
+            currentRadioStation++;
         }
     }
 
-    public void prev(int newCurrentRadioStation) {
-        if (newCurrentRadioStation == 0) {
+    public void prev() {
+        if (currentRadioStation == 0) {
             currentRadioStation = 9;
         } else {
-            currentRadioStation = newCurrentRadioStation - 1;
+            currentRadioStation = currentRadioStation - 1;
         }
     }
 
@@ -40,6 +44,10 @@ public class Radio {
         if (newCurrentVolume == 100) {
             currentVolume = newCurrentVolume;
         }
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
     public void decreaseVolume(int newCurrentVolume) {

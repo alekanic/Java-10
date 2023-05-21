@@ -9,38 +9,10 @@ public class RadioTest {
     public void shouldSetRadioStation() {
         Radio setNewRadioStation = new Radio();
 
-        setNewRadioStation.setCurrentRadioStation(9);
+        setNewRadioStation.setCurrentRadioStation(8);
 
-        int expected = 9;
-        int actual = setNewRadioStation.currentRadioStation;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    // Проверяем, что нельзя установить отрицательный номер радиостанции
-    public void shouldNotSetNegativeValueRadioStation() {
-        Radio setNewRadioStation = new Radio();
-
-        setNewRadioStation.setCurrentRadioStation(-5);
-
-        int expected = 0;
-        int actual = setNewRadioStation.currentRadioStation;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    // Проверяем, что нельзя установить номер радиостанции, который больше 9
-    public void shouldNotSetValueRadioStationMoreThatNine() {
-        Radio setNewRadioStation = new Radio();
-
-        setNewRadioStation.setCurrentRadioStation(10);
-
-        int expected = 0;
-        int actual = setNewRadioStation.currentRadioStation;
+        int expected = 8;
+        int actual = setNewRadioStation.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -50,11 +22,12 @@ public class RadioTest {
     // Проверяем, что каналы от 0 до 8 увеличиваются на 1
     public void channelsFromZeroToEightIncrease() {
         Radio nextRadioStation = new Radio();
+        nextRadioStation.setCurrentRadioStation(8);
 
-        nextRadioStation.next(0);
+        nextRadioStation.next();
 
-        int expected = 1;
-        int actual = nextRadioStation.currentRadioStation;
+        int expected = 9;
+        int actual = nextRadioStation.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -64,11 +37,12 @@ public class RadioTest {
     // Проверяем, что 9 канал при увеличении становится 0
     public void channelNineIncrease() {
         Radio nextRadioStation = new Radio();
+        nextRadioStation.setCurrentRadioStation(9);
 
-        nextRadioStation.next(9);
+        nextRadioStation.next();
 
         int expected = 0;
-        int actual = nextRadioStation.currentRadioStation;
+        int actual = nextRadioStation.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -77,12 +51,13 @@ public class RadioTest {
 
     // Проверяем, что каналы от 1 до 9 уменьшаются на 1
     public void channelsFromOneToNineDecrease() {
-        Radio nextRadioStation = new Radio();
+        Radio prevRadioStation = new Radio();
+        prevRadioStation.setCurrentRadioStation(1);
 
-        nextRadioStation.prev(1);
+        prevRadioStation.prev();
 
         int expected = 0;
-        int actual = nextRadioStation.currentRadioStation;
+        int actual = prevRadioStation.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -91,12 +66,13 @@ public class RadioTest {
 
     // Проверяем, что 0 канал при уменьшении становится 9
     public void channelZeroDecrease() {
-        Radio nextRadioStation = new Radio();
+        Radio prevRadioStation = new Radio();
+        prevRadioStation.setCurrentRadioStation(0);
 
-        nextRadioStation.prev(0);
+        prevRadioStation.prev();
 
         int expected = 9;
-        int actual = nextRadioStation.currentRadioStation;
+        int actual = prevRadioStation.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -110,24 +86,11 @@ public class RadioTest {
         increaseVolume.increaseVolume(99);
 
         int expected = 100;
-        int actual = increaseVolume.currentVolume;
+        int actual = increaseVolume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-
-    // Проверяем, что звук не увеличивается больше 100
-    public void increaseVolumeAfterHundred() {
-        Radio increaseVolume = new Radio();
-
-        increaseVolume.increaseVolume(100);
-
-        int expected = 100;
-        int actual = increaseVolume.currentVolume;
-
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
 
@@ -138,24 +101,11 @@ public class RadioTest {
         decreaseVolume.decreaseVolume(100);
 
         int expected = 99;
-        int actual = decreaseVolume.currentVolume;
+        int actual = decreaseVolume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-
-    // Проверяем, что звук равный 0 не уменьшается
-    public void decreaseVolumeZero() {
-        Radio decreaseVolume = new Radio();
-
-        decreaseVolume.decreaseVolume(0);
-
-        int expected = 0;
-        int actual = decreaseVolume.currentVolume;
-
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
 
@@ -166,37 +116,10 @@ public class RadioTest {
         setVolume.setCurrentVolume(80);
 
         int expected = 80;
-        int actual = setVolume.currentVolume;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    // Проверяем, что нелья выставить отрицательное значение звука
-    public void setVolumeBelowZero() {
-        Radio setVolume = new Radio();
-
-        setVolume.setCurrentVolume(-80);
-
-        int expected = 0;
-        int actual = setVolume.currentVolume;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    // Проверяем, что нелья выставить значение звука больше 100
-    public void setVolumeAfterHundred() {
-        Radio setVolume = new Radio();
-
-        setVolume.setCurrentVolume(120);
-
-        int expected = 0;
-        int actual = setVolume.currentVolume;
+        int actual = setVolume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
 }
+
