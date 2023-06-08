@@ -4,15 +4,13 @@ public class Radio {
     private int currentVolume;
     private int maxStation;
 
-    public Radio(int stationsCount) {
-        this.maxStation = stationsCount - 1;
-    }
-
     public Radio() {
         this.maxStation = 9;
     }
 
-    // Номер радиостанции
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount -1;
+    }
 
     public void setCurrentRadioStation(int currentRadioStation) {
         if (currentRadioStation < 0) {
@@ -43,8 +41,6 @@ public class Radio {
             currentRadioStation = currentRadioStation - 1;
         }
     }
-
-    // Громкость звука
 
     public void increaseVolume(int newCurrentVolume) {
         if (newCurrentVolume < 100) {
@@ -77,4 +73,6 @@ public class Radio {
         }
         currentVolume = newCurrentVolume;
     }
+
 }
+
